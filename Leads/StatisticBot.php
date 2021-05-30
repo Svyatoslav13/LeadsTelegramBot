@@ -30,7 +30,7 @@ class StatisticBot extends Bot
         $webhook = $this->setWebHook();
 
         if ($webhook) {
-            $this->newCommand(self::START, self::START_ANSWER);
+            $this->newCommand(self::START, self::START_ANSWER, $this->addKeyboard());
             $this->newCommand(self::HELP, self::HELP_ANSWER);
             $this->newCommand(self::GET_STATISTICS, self::STATISTICS_REQUEST);
             $this->textHandler();

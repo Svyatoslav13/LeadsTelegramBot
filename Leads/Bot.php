@@ -23,10 +23,14 @@ class Bot
         // перегружаемый метод
     }
 
-    public function newCommand($name, $answer): void
+    public function newCommand($name, $answer, $keyboard = null): void
     {
-        $this->bot->command($name, function ($message) use ($answer) {
-            $this->bot->sendMessage($message->getChat()->getId(), $answer);
+        $this->bot->command($name, function ($message) use ($answer, $keyboard) {
+            if (is_null($keyboard)) {
+                $this->bot->sendMessage($message->getChat()->getId(), $answer);
+            } else {
+                $this->bot->sendMessage($message->getChat()->getId(), $answer, null, false, null, $keyboard);
+            }
         });
     }
 
@@ -43,4 +47,8 @@ class Bot
         return json_decode($answer, true)["ok"];
     }
 
+    public function addKeyboard()
+    {
+        return new \TelegramBot\Api\Types\ReplyKeyboardMarkup(array(array("/help", "/getaccountstatistics"))); // true for one-time keyboard
+    }
 }
