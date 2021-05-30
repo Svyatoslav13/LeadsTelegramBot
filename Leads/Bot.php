@@ -30,6 +30,11 @@ class Bot
         });
     }
 
+    public function runBot()
+    {
+        $this->bot->run();
+    }
+
     public function setWebHook(): string
     {
         $url = BotApi::URL_PREFIX . $this->token . "/setWebhook?url=" . urlencode(Settings::getUrlNgrok());
@@ -37,4 +42,5 @@ class Bot
 
         return json_decode($answer, true)["ok"];
     }
+
 }

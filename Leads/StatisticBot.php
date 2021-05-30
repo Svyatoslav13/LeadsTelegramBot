@@ -34,8 +34,6 @@ class StatisticBot extends Bot
             $this->newCommand(self::HELP, self::HELP_ANSWER);
             $this->newCommand(self::GET_STATISTICS, self::STATISTICS_REQUEST);
             $this->textHandler();
-    
-            $this->bot->run();
         } else {
             throw new Exception("Webhook не установлен");
         }
